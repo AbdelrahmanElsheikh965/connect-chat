@@ -1,9 +1,5 @@
 const socket = io('http://localhost:3000')
 
-socket.on('connect-chat', data => {
-  console.log(data);
-})
-
 var sendButton = document.getElementById('sendBtn');
 var message    = document.getElementById('messageContent');
 var ChatContainer = document.getElementById('chat-content');
@@ -18,6 +14,9 @@ sendButton.addEventListener('click', e => {
 
 })
 
+socket.on('connect-chat', data => {
+  appendOtherSideMessage(data);
+})
 
 function appendMyMessage(messageBody) {
     const messageNode = '<div class="media media-chat media-chat-reverse">'+
