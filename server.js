@@ -9,10 +9,8 @@ const io = require("socket.io")(3000, {
 io.on("connection", (socket) => {
   socket.emit("connect-chat", "test_message");
   
-  // handle the incoming message
   socket.on('message-channel', message => {
-    // log the message just for testing purposes.
-    console.log(message);
+    socket.broadcast.emit('connect-chat', message);
   })
 });
 
